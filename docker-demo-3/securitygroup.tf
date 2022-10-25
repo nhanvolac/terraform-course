@@ -1,5 +1,5 @@
 resource "aws_security_group" "ecs-securitygroup" {
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = aws_vpc.STG.id
   name        = "ecs"
   description = "security group for ecs"
   egress {
@@ -27,7 +27,7 @@ resource "aws_security_group" "ecs-securitygroup" {
 }
 
 resource "aws_security_group" "myapp-elb-securitygroup" {
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = aws_vpc.STG.id
   name        = "myapp-elb"
   description = "security group for ecs"
   egress {
@@ -50,7 +50,7 @@ resource "aws_security_group" "myapp-elb-securitygroup" {
 
 # jenkins
 resource "aws_security_group" "jenkins-securitygroup" {
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = aws_vpc.STG.id
   name        = "jenkins-securitygroup"
   description = "security group that allows ssh and all egress traffic"
   egress {
