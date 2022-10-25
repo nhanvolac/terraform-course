@@ -4,7 +4,7 @@ resource "aws_ecs_task_definition" "myapp-task-definition" {
   family                = "myapp"
   container_definitions = templatefile("templates/app.json.tpl", {
     REPOSITORY_URL = replace(aws_ecr_repository.myapp.repository_url, "https://", "")
-    APP_VERSION    = var.MYAPP_VERSION
+    MYAPP_VERSION    = var.MYAPP_VERSION
   })
 }
 
