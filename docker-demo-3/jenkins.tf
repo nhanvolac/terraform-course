@@ -3,7 +3,7 @@ resource "aws_instance" "jenkins-instance" {
   instance_type = "t2.small"
 
   # the VPC subnet
-  subnet_id = aws_subnet.main-public-1.id
+  subnet_id = aws_subnet.STG-public-1.id
 
   # the security group
   vpc_security_group_ids = [aws_security_group.jenkins-securitygroup.id]
@@ -16,7 +16,7 @@ resource "aws_instance" "jenkins-instance" {
 }
 
 resource "aws_ebs_volume" "jenkins-data" {
-  availability_zone = "eu-west-1a"
+  availability_zone = "ap-southeast-1a"
   size              = 20
   type              = "gp2"
   tags = {
@@ -29,4 +29,3 @@ resource "aws_volume_attachment" "jenkins-data-attachment" {
   volume_id   = aws_ebs_volume.jenkins-data.id
   instance_id = aws_instance.jenkins-instance.id
 }
-
